@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ToolController extends Controller
 {
@@ -16,11 +17,31 @@ class ToolController extends Controller
 
     public function store(Request $request)
     {
+        $user = auth()->user(); 
+
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no autenticado'], 401);
+        }
+        if (!$request->has('name') || empty($request->name)) {
+            return response()->json(['message' => 'El campo nombre es obligatorio.'], 400);
+        }
+
+        if (!$request->has('description') || empty($request->description)) {
+            return response()->json(['message' => 'El campo description es obligatorio'], 400);
+        }
+        if (!$request->has('quantity') || empty($request->quantity)) {
+            return response()->json(['message' => 'El campo quantity es obligatorio'], 400);
+        }
+        if (!$request->has('location') || empty($request->location)) {
+            return response()->json(['message' => 'El campo location es obligatorio'], 400);
+        }
+        
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:500',
-            'quantity' => 'nullable|int|max:500',
-            'location' => 'nullable|string|max:500',
+            'description' => 'required|string|max:500',
+            'quantity' => 'required|int|max:500',
+            'location' => 'required|string|max:500',
         ]);
 
         $tool = Tool::create([
@@ -28,11 +49,12 @@ class ToolController extends Controller
             'description' => $request->description,
             'quantity' => $request->quantity,
             'location' => $request->location,
-            // 'user_id' => auth()->id(),
+            'user_id' => Auth::id(), 
         ]);
 
         return response()->json($tool, 201);
     }
+
 
     public function show($id)
     {

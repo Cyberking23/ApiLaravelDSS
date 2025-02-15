@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('tools', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nombre de la herramienta
-            $table->string('description')->nullable(); // Descripción de la herramienta
-            $table->integer('quantity')->default(1); // Cantidad de herramientas
-            $table->string('location')->nullable(); // Ubicación de la herramienta
-            $table->foreignId('user_id')->nullable(); // Relación con Usuario
+            $table->string('name');
+            $table->string('description'); 
+            $table->integer('quantity'); 
+            $table->string('location'); 
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

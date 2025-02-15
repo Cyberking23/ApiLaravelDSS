@@ -14,6 +14,7 @@ class Tool extends Model
         'description',
         'quantity',
         'location',
+        'user_id'
     ];
     
 
