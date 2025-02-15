@@ -19,7 +19,7 @@ class ToolController extends Controller
     {
         $user = auth()->user(); 
 
-        if (!$user) {
+        if (!$user = auth()->user()) {
             return response()->json(['message' => 'Usuario no autenticado'], 401);
         }
         if (!$request->has('name') || empty($request->name)) {
