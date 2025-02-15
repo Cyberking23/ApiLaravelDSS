@@ -16,12 +16,7 @@ class ToolController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $user = auth()->user(); 
-
-        if (!$user = auth()->user()) {
-            return response()->json(['message' => 'Usuario no autenticado'], 401);
-        }
+    {        
         if (!$request->has('name') || empty($request->name)) {
             return response()->json(['message' => 'El campo nombre es obligatorio.'], 400);
         }
