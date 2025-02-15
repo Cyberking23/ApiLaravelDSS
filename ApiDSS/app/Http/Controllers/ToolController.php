@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Controllers/ToolController.php
 
 namespace App\Http\Controllers;
 

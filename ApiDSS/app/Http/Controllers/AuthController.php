@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Registro de usuarios
     public function register(Request $request)
     {
         $request->validate([
@@ -34,24 +33,19 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validar credenciales
         $credentials = $request->only('email', 'password');
 
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        // Retornar el token
-        return response()->json(compact('token'));
+        return response()->json([
+            'message' => 'Usuario logueado con éxito',
+            'token' => $token
+        ]);
     }
 
-    public function me()
-    {
-        // Retornar datos del usuario autenticado
-        return response()->json(auth()->user());
-    }
 
-    // Cerrar sesión (invalidar token)
     public function logout()
     {
         JWTAuth::invalidate(JWTAuth::getToken());

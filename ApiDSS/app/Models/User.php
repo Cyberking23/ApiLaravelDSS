@@ -1,6 +1,5 @@
 <?php
 
-// app/Models/User.php
 
 namespace App\Models;
 
@@ -27,7 +26,6 @@ class User extends Authenticatable implements JWTSubject
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 
     // Implementación de métodos JWTSubject

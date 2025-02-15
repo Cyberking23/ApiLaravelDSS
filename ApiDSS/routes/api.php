@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::apiResource('tools', ToolController::class);
-
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('me', [AuthController::class, 'me'])->middleware('auth:api');
