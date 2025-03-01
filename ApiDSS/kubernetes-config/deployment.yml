@@ -21,8 +21,41 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              cpu: "100m"  # Solicitud de CPU: El contenedor solicita 100 miliCPU (0.1 CPU).
+              memory: "128Mi"  # Solicitud de memoria: El contenedor solicita 128 MiB de memoria.
             limits:
-              cpu: "500m"
-              memory: "256Mi"
+              cpu: "500m"  # Límite de CPU: El contenedor puede usar hasta 500 miliCPU (0.5 CPU).
+              memory: "256Mi"  # Límite de memoria: El contenedor puede usar hasta 256 MiB de memoria.
+
+# Ejemplo de comando `kubectl` para aplicar este despliegue:
+# kubectl apply -f deployment.yaml
+
+# Ejemplo de comando `kubectl` para escalar el despliegue a 3 réplicas:
+# kubectl scale deployment mi-api --replicas=3
+
+# Ejemplo de comando `kubectl` para ver el estado del despliegue:
+# kubectl describe deployment mi-api
+
+# Ejemplo de comando `kubectl` para ver los pods:
+# kubectl get pods
+
+# Ejemplo de comando `kubectl` para eliminar el despliegue:
+# kubectl delete -f deployment.yaml
+
+# Comandos para gestionar los recursos (solicitudes y límites):
+
+# 1. Comprobar el uso de recursos de los pods (CPU y memoria):
+# kubectl top pods  # Muestra el uso de CPU y memoria de los pods en el espacio de nombres actual.
+# kubectl top pod <nombre-del-pod>  # Muestra el uso de recursos para un pod específico.
+
+# 2. Ver las solicitudes y límites de recursos para los contenedores en un despliegue:
+# kubectl describe deployment mi-api  # Muestra detalles del despliegue, incluyendo las solicitudes y límites de recursos.
+
+# 3. Comprobar el uso de recursos a nivel de nodo (CPU, memoria):
+# kubectl top nodes  # Muestra el uso de recursos de todos los nodos en el clúster.
+
+# 4. Actualizar las solicitudes y límites de recursos para el despliegue (por ejemplo, aumentar el límite de CPU):
+# kubectl set resources deployment mi-api --limits=cpu=1 --requests=cpu=500m
+
+# 5. Para verificar si un pod está siendo limitado (por exceder los límites):
+# kubectl logs <nombre-del-pod>  # Revisa los logs para ver si hay mensajes de limitación por CPU o memoria.

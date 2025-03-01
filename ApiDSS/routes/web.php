@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", function () {
-    return "LARAVEL API FUNCIONANDO";
+    return response()->json([["message" => "LARAVEL API FUNCIONANDO"]]);
 });

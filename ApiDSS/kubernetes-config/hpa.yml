@@ -1,18 +1,36 @@
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2  # Versión de la API para autoscaling (v2)
+kind: HorizontalPodAutoscaler  # Tipo de recurso: HorizontalPodAutoscaler (HPA)
 metadata:
-  name: mi-api-hpa
+  name: mi-api-hpa  # Nombre del HPA
 spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: mi-api
+  scaleTargetRef:  # Referencia al recurso que se escalará
+    apiVersion: apps/v1  # Versión de la API del recurso objetivo (Deployment)
+    kind: Deployment  # Tipo de recurso al que se aplica el HPA (Deployment)
+    name: mi-api  # Nombre del Deployment a escalar
   minReplicas: 2  # Mínimo 2 réplicas
   maxReplicas: 5  # Máximo 5 réplicas
   metrics:
-    - type: Resource
+    - type: Resource  # Tipo de métrica: basada en recursos (por ejemplo, CPU)
       resource:
-        name: cpu
+        name: cpu  # Recurso que se monitorea (CPU)
         target:
-          type: Utilization
-          averageUtilization: 50  # Escala cuando el uso de CPU supera el 50%
+          type: Utilization  # Tipo de objetivo: utilización
+          averageUtilization: 50  # Escala cuando la utilización promedio de CPU supera el 50%
+
+# Comandos equivalentes usando kubectl:
+#
+# 1. Crear el HPA usando este archivo YAML:
+#    Guardar este contenido en un archivo llamado "hpa.yaml" y ejecutar:
+#       kubectl apply -f hpa.yaml
+#
+# 2. Crear el HPA directamente con un comando (sin archivo YAML):
+#       kubectl autoscale deployment mi-api --cpu-percent=50 --min=2 --max=5
+#
+# 3. Verificar el HPA creado:
+#       kubectl get hpa
+#
+# 4. Obtener detalles del HPA:
+#       kubectl describe hpa mi-api-hpa
+#
+# 5. Eliminar el HPA:
+#       kubectl delete hpa mi-api-hpa

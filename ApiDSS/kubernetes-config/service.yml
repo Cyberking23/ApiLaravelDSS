@@ -1,12 +1,25 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-service
+  name: api-service  # Nombre del servicio que será creado
 spec:
   selector:
-    app: mi-api
+    app: mi-api  # Selecciona los pods que tienen la etiqueta 'app: mi-api'
   ports:
-    - protocol: TCP
-      port: 80  # Puerto expuesto
-  type: LoadBalancer  # Expone el servicio externamente con balanceo de carga
+    - protocol: TCP  # El protocolo para el servicio (en este caso TCP)
+      port: 80  # Puerto expuesto por el servicio (puerto que escuchará el balanceador de carga)
+  type: LoadBalancer  # Expone el servicio externamente con un balanceador de carga, creando una IP pública para acceder al servicio.
 
+
+
+# Comando kubectl expose:
+# kubectl expose deployment mi-api --name=api-service --port=80 --target-port=80 --type=LoadBalancer
+
+# Ejemplo de comando `kubectl` para verificar que el servicio fue creado correctamente:
+# kubectl get services  # Muestra todos los servicios en el clúster.
+
+# Ejemplo de comando `kubectl` para obtener detalles sobre el servicio:
+# kubectl describe service api-service  # Muestra información detallada sobre el servicio, incluyendo el puerto expuesto.
+
+# Ejemplo de comando `kubectl` para ver la IP pública asignada al servicio (si el balanceador de carga está configurado):
+# kubectl get service api-service  # Esto mostrará la IP externa asignada al servicio.
