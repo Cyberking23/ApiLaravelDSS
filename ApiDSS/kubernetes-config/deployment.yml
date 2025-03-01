@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-api
+  labels:
+    app: mi-api
+spec:
+  replicas: 2  # Número de réplicas inicial
+  selector:
+    matchLabels:
+      app: mi-api
+  template:
+    metadata:
+      labels:
+        app: mi-api
+    spec:
+      containers:
+        - name: api-container
+          image: pgap22/laravel-api
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"

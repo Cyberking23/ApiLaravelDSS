@@ -16,7 +16,7 @@ class AuthController extends Controller
     {
         // Validación manual para campos de registro
         if (!$request->has('name') || empty($request->name)) {
-            return response()->json(['message' => 'El campo nombre es obligatorio.'], 400);
+            return response()->json(['message' => 'El campo "name" es obligatorio.'], 400);
         }
 
         if (!$request->has('email') || empty($request->email)) {
@@ -24,7 +24,7 @@ class AuthController extends Controller
         }
 
         if (!$request->has('password') || empty($request->password)) {
-            return response()->json(['message' => 'El campo password es obligatorio.'], 400);
+            return response()->json(['message' => 'El campo "password" es obligatorio.'], 400);
         }
 
         // Validación utilizando Laravel para los campos restantes
