@@ -388,27 +388,6 @@ docker push pgap22/laravel-api:latest
    kubectl version --client
    minikube version
    ```
-
-#### **Linux (Ubuntu/Debian)**
-Ejecuta:
-
-```bash
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x kubectl
-sudo mv kubectl /usr/local/bin/
-
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-chmod +x minikube-linux-amd64
-sudo mv minikube-linux-amd64 /usr/local/bin/minikube
-```
-
-Verifica la instalación con:
-
-```bash
-kubectl version --client
-minikube version
-```
-
 ---
 
 ## **4. Iniciar Minikube y desplegar la API**
