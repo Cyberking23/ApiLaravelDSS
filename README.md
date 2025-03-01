@@ -53,21 +53,7 @@ Para desplegar esta API, sigue los siguientes pasos:
    php artisan migrate
    ```
 
-6. **Instala JWT:**
-
-   Si aún no has instalado JWT, asegúrate de tener el paquete `tymon/jwt-auth` instalado:
-
-   ```bash
-   composer require tymon/jwt-auth
-   ```
-
-   Luego, publica el archivo de configuración de JWT:
-
-   ```bash
-   php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
-   ```
-
-7. **Configura JWT:**
+6. **Configura JWT:**
 
    En el archivo `.env`, agrega las siguientes líneas para configurar JWT:
 
