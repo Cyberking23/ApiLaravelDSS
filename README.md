@@ -58,7 +58,7 @@ Para desplegar esta API, sigue los siguientes pasos:
    En el archivo `.env`, agrega las siguientes líneas para configurar JWT:
 
    ```env
-   JWT_SECRET=generate_this_using_php artisan jwt:secret
+   JWT_SECRET=<token>
    ```
 
    Puedes generar el valor de `JWT_SECRET` ejecutando:
